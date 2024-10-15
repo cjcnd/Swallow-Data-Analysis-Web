@@ -1,6 +1,7 @@
 package org.example.swllow_data_analysis.mathFuntion.haversine;
 
 import org.example.swllow_data_analysis.mathFuntion.MathFunction;
+import org.springframework.stereotype.Component;
 
 public class Haversine implements MathFunction {
     private static final double EARTH_RADIUS = 6371;

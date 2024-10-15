@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: create # update
+  datasource:
+    url: jdbc:sqlite:mydb.db
+    username: admin
+    password: admin
+  servlet:
+    multipart:
+      max-file-size: 128KB
+      max-request-size: 128KB

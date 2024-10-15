@@ -1,31 +1,23 @@
 package org.example.swllow_data_analysis.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.swllow_data_analysis.mathFuntion.MathFunction;
+import org.example.swllow_data_analysis.mathFuntion.haversine.Haversine;
+import org.example.swllow_data_analysis.storage.StorageProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import javax.sql.DataSource;
-import java.util.Objects;
 
 @Configuration
+@ComponentScan(basePackages = "org.example.swllow_data_analysis.mathFuntion.haversine")
 public class ProjectConfig {
 
-    Environment env;
-
-    @Autowired
-    public ProjectConfig(Environment env) {
-        this.env = env;
+    @Bean
+    StorageProperties StorageProperties() {
+        return new StorageProperties();
     }
 
     @Bean
-    public DataSource dataSource() {
-        final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(Objects.requireNonNull(env.getProperty("driverClassName")));
-        dataSource.setUrl(env.getProperty("url"));
-        dataSource.setUsername(env.getProperty("user"));
-        dataSource.setPassword(env.getProperty("password"));
-        return dataSource;
+    MathFunction mathFunction() {
+        return new Haversine();
     }
 }
