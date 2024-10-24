@@ -7,14 +7,16 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Data
 @NoArgsConstructor
 @Entity
 public class Swallow {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private long number;
@@ -25,7 +27,15 @@ public class Swallow {
     private double latitudeDifference;
     private double distance;
 
-    public Swallow(long index, String First, double longitude, double latitude, double longitudeDifference, double latitudeDifference, double distance) {
+    public Swallow(
+            long index,
+            String First,
+            double longitude,
+            double latitude,
+            double longitudeDifference,
+            double latitudeDifference,
+            double distance) {
+
         this.number = index;
         this.First = First;
         this.longitude = longitude;
@@ -33,5 +43,16 @@ public class Swallow {
         this.longitudeDifference = longitudeDifference;
         this.latitudeDifference = latitudeDifference;
         this.distance = distance;
+    }
+
+    @Override
+    public String toString(){
+        return number + "\n"
+                + First + "\n"
+                + longitude + "\n"
+                + longitude + "\n"
+                + longitudeDifference + "\n"
+                + latitudeDifference + "\n"
+                + distance + "\n";
     }
 }

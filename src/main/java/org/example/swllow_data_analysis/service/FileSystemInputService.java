@@ -1,7 +1,6 @@
-package org.example.swllow_data_analysis.service.storage;
+package org.example.swllow_data_analysis.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.swllow_data_analysis.service.readfile.FileService;
 import org.example.swllow_data_analysis.storage.StorageException;
 import org.example.swllow_data_analysis.storage.StorageFileNotFoundException;
 import org.example.swllow_data_analysis.storage.StorageProperties;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,12 +23,12 @@ import java.util.stream.Stream;
 
 @Slf4j
 @Service
-public class FileSystemStorageService implements StorageService {
+public class FileSystemInputService implements FileInputService {
 
     private final Path rootLocation;
 
     @Autowired
-    public FileSystemStorageService(@Qualifier("StorageProperties") StorageProperties properties){
+    public FileSystemInputService(@Qualifier("StorageProperties") StorageProperties properties){
         if (properties.getLocation().trim().isEmpty()) {
             throw new StorageException("File upload location can not be Empty");
         }

@@ -1,6 +1,6 @@
 package org.example.swllow_data_analysis;
 
-import org.example.swllow_data_analysis.service.storage.StorageService;
+import org.example.swllow_data_analysis.service.FileInputService;
 import org.example.swllow_data_analysis.storage.StorageProperties;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,10 +22,10 @@ public class SwallowDataAnalysisApplication implements WebMvcConfigurer {
 	}
 
 	@Bean
-	CommandLineRunner init(StorageService storageService) {
+	CommandLineRunner init(FileInputService fileInputService) {
 		return (args) -> {
-			storageService.deleteAll();
-			storageService.init();
+			fileInputService.deleteAll();
+			fileInputService.init();
 		};
 	}
 }
